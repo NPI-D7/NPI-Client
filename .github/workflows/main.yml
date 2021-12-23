@@ -42,7 +42,11 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build on Windows
         shell: bash
-        run: g++ infinite.cpp -static-libgcc -static-libstdc++ -std=c++17 -static -o infinite.exe
+        run: |
+          pacman -S mingw-w64-x86_64-sfml
+          mkdir -p build && cd build
+          cmake ..
+          make
       - name: "Publish build to GH Actions"
         uses: actions/upload-artifact@v2
         with:
