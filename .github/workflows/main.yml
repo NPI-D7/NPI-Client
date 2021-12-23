@@ -24,7 +24,7 @@ jobs:
       - name: build
         id: build
         run: |
-          mkdir -p build&& cd build
+          mkdir -p build && cd build
           cd build
           cmake ..
           make
