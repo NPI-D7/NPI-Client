@@ -43,7 +43,7 @@ jobs:
       - name: Build on Windows
         shell: bash
         run: |
-          pacman -S mingw-w64-x86_64-sfml
+          vcpkg install sfml
           mkdir -p build && cd build
           cmake ..
           make
