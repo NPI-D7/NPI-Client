@@ -1,0 +1,51 @@
+name: npi-client linux
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      commit_tag: ${{ steps.build.outputs.commit_tag }}
+      commit_hash: ${{ steps.build.outputs.commit_hash }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: set up
+        run: |
+          sudo apt update
+          sudo apt install g++ lib-sfml-dev -y
+
+      - name: build
+        id: build
+        run: |
+          mkdir build&& cd build
+          cd build
+          cmake ..
+          make
+          mkdir -p ~/artifacts
+          cp infinite ~/artifacts
+          echo ::set-output name=commit_tag::$(git describe --abbrev=0 --tags)
+          echo ::set-output name=commit_hash::$(git log --format=%h -1)
+      - name: upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          path: ~/artifacts/*
+          name: ubuntu
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build on Windows
+        shell: bash
+        run: g++ infinite.cpp -static-libgcc -static-libstdc++ -std=c++17 -static -o infinite.exe
+      - name: "Publish build to GH Actions"
+        uses: actions/upload-artifact@v2
+        with:
+          path: infinite.exe
+          name: "windows"
