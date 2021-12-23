@@ -1,3 +1,0 @@
-/home/kali/Documents/NPI-Client/build/CMakeFiles/npi-client.dir
-/home/kali/Documents/NPI-Client/build/CMakeFiles/edit_cache.dir
-/home/kali/Documents/NPI-Client/build/CMakeFiles/rebuild_cache.dir
