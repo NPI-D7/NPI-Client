@@ -19,7 +19,7 @@ jobs:
       - name: set up
         run: |
           sudo apt update
-          sudo apt install g++ lib-sfml-dev -y
+          sudo apt install g++ libsfml-dev -y
 
       - name: build
         id: build
