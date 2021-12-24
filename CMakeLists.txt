@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.6)
 project(npi-client)
 
-find_package(SFML 2.5 COMPONENTS system window graphics REQUIRED)
+find_package(SFML 2.5.1 COMPONENTS system window graphics REQUIRED)
 
 add_executable(npi-client src/main.cpp)
 
